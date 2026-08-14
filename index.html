@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Center Facility Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lg-red: #A50034;
+    --lg-red-dark: #7a0025;
+    --lg-red-deeper: #4d0017;
+    --lg-red-light: #cc0040;
+    --accent: #A50034;
+    --accent-bright: #ff1a5e;
+    --red: #A50034;
+    --red-light: #cc0040;
+    --navy: #1a1a1a;
+    --navy-mid: #2a2a2a;
+    --blue: #A50034;
+    --white: #ffffff;
+    --off-white: rgb(240, 236, 228);
+    --gray: #999999;
+    --gray-light: #e0e0e0;
+    --text: #1a1a1a;
+    --content-max: 1100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #ffffff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    border-bottom: 3px solid var(--lg-red);
+  }
+
+  .header-top {
+    padding: 14px 40px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .header-top-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:35px;
+    color: var(--lg-red);
+    letter-spacing: 3px;
+  }
+  .logo span {
+    color: #1a1a1a;
+  }
+
+  .header-subtitle {
+    font-size:16px;
+    color: #999;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV TABS ── */
+  nav {
+    background: #ffffff;
+  }
+
+  .nav-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 40px;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 16px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #888;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .tab-btn:hover {
+    color: var(--lg-red);
+    background: rgba(165,0,52,0.04);
+  }
+
+  .tab-btn.active {
+    color: var(--lg-red);
+    border-bottom-color: var(--lg-red);
+    background: rgba(165,0,52,0.06);
+    font-weight: 700;
+  }
+
+  .tab-btn .tab-icon {
+    display: block;
+    font-size:21px;
+    margin-bottom: 4px;
+  }
+
+  /* ── CONTENT AREA ── */
+  .content-area {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .tab-content.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-size:35px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--lg-red);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title .icon {
+    font-size:40px;
+  }
+
+  .sub-section {
+    margin-bottom: 36px;
+  }
+
+  .sub-title {
+    font-size:20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding: 10px 16px;
+    background: var(--lg-red);
+    color: var(--white);
+    border-left: 4px solid var(--lg-red-dark);
+    border-radius: 0 4px 4px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(10,22,40,0.08);
+    border: 1px solid var(--gray-light);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 6px 24px rgba(10,22,40,0.12);
+  }
+
+  /* ── NOTICE BADGE ── */
+  @keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+  /* ── NOTICE TAB STYLES ── */
+  .tab-notice.active {
+    color: var(--lg-red) !important;
+    border-bottom-color: var(--lg-red) !important;
+    background: rgba(165,0,52,0.06) !important;
+  }
+  .tab-notice {
+    color: #cc3366 !important;
+  }
+
+  /* ── NOTICE CONTENT ── */
+  .notice-page-header {
+    background: linear-gradient(135deg, var(--lg-red) 0%, var(--lg-red-deeper) 100%);
+    border-radius: 10px;
+    padding: 28px 36px 24px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(165,0,52,0.25);
+  }
+  .notice-page-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 20px,
+      rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 40px
+    );
+  }
+  .notice-page-header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    font-size:15px;
+    font-weight: 900;
+    padding: 5px 14px;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    animation: pulse-badge 2s ease-in-out infinite;
+  }
+  .notice-page-header h2 {
+    font-size:30px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+  .notice-page-header p {
+    font-size:17px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 6px;
+    position: relative;
+  }
+
+  .notice-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .ncard {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 2px 10px rgba(10,22,40,0.07);
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .ncard:hover {
+    box-shadow: 0 6px 20px rgba(10,22,40,0.13);
+    transform: translateY(-2px);
+  }
+
+  .ncard-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: #1a1a1a;
+  }
+
+  .ncard-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:28px;
+    flex-shrink: 0;
+  }
+
+  .ncard-title {
+    font-size:16px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .ncard-subtitle {
+    font-size:13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  .ncard-body {
+    padding: 14px 18px;
+  }
+  .ncard-body p {
+    font-size:14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .ncard-ban {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff0f4;
+    border: 1px solid #ffb3c6;
+    color: var(--lg-red);
+    font-size:12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .ncard-warn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #444;
+    font-size:12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  /* ── EMERGENCY BOX ── */
+  .emergency-box {
+    background: linear-gradient(135deg, var(--lg-red) 0%, var(--lg-red-deeper) 100%);
+    border-radius: 12px;
+    padding: 28px 36px;
+    text-align: center;
+    margin-top: 8px;
+    border: 2px solid rgba(255,255,255,0.15);
+    box-shadow: 0 4px 24px rgba(165,0,52,0.3);
+  }
+  .emergency-label {
+    font-size:30px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .emergency-desc {
+    font-size:19px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 14px;
+  }
+  .emergency-number {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:68px;
+    color: #fff;
+    letter-spacing: 4px;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .emergency-number:hover { color: #ffccdd; }
+  .emergency-number span { color: #ffccdd; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1140px) {
+    .nav-inner {
+      padding: 0 20px;
+    }
+    .header-top {
+      padding: 12px 20px;
+    }
+    .content-area {
+      padding: 24px 20px 60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner {
+      padding: 0 4px;
+    }
+    .header-top {
+      padding: 12px 16px;
+    }
+    .content-area { padding: 20px 16px 60px; }
+    .section-title { font-size:28px; }
+    .tab-btn { min-width: 100px; font-size:13px; padding: 10px 8px; }
+    .checkin-grid { grid-template-columns: 1fr !important; }
+    .meal-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div class="header-top-inner">
+      <div>
+        <div class="logo">LEARNING <span>CENTER</span></div>
+        <div class="header-subtitle">Safety Guidelines &amp; Facility Information</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <nav id="tabNav">
+    <div class="nav-inner">
+      <button class="tab-btn tab-notice active" onclick="showTab('notice', this)">
+        <span class="tab-icon">🚨</span>[MUST READ] Safety Guidelines
+      </button>
+      <button class="tab-btn" onclick="showTab('stay', this)">
+        <span class="tab-icon">🏨</span>Accommodation
+      </button>
+      <button class="tab-btn" onclick="showTab('amenity', this)">
+        <span class="tab-icon">🏪</span>Facility Guide
+      </button>
+      <button class="tab-btn" onclick="showTab('map', this)">
+        <span class="tab-icon">🏢</span>Building Map
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ━━━ CONTENT ━━━ -->
+<div class="content-area">
+
+  <!-- ════════════════════════════════════════
+       TAB 0: SAFETY GUIDELINES
+       ════════════════════════════════════════ -->
+  <div id="tab-notice" class="tab-content active">
+
+    <div class="notice-page-header">
+      <div class="badge">⚠ MUST READ</div>
+      <h2>Important Notice Before Check-In</h2>
+      <p>Please review the following before your training begins.</p>
+    </div>
+
+    <div class="notice-cards-grid">
+
+      <!-- No Alcohol -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(192,57,43,0.25);">🚫</div>
+          <div>
+            <div class="ncard-title">No Alcohol</div>
+            <div class="ncard-subtitle">Not permitted at check-in or during training · No outings</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">🚫 NO ALCOHOL</div>
+          <p>You may <strong>not check in while intoxicated</strong>, and <strong>alcohol consumption and outings are not permitted</strong> during the training period.<br><span style="color:var(--lg-red); font-weight:700;">※ Violations will result in dismissal and formal reporting.</span></p>
+        </div>
+      </div>
+
+      <!-- No Smoking -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(52,73,94,0.35);">🚭</div>
+          <div>
+            <div class="ncard-title">No Smoking</div>
+            <div class="ncard-subtitle">All facilities are non-smoking areas</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">🚭 NO SMOKING</div>
+          <p>All <strong>on-site facilities are non-smoking areas</strong>.<br>Smoking is only permitted in designated areas.</p>
+        </div>
+      </div>
+
+      <!-- No Outside Food -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(230,126,34,0.25);">🍱</div>
+          <div>
+            <div class="ncard-title">No Outside Food</div>
+            <div class="ncard-subtitle">Outside food is restricted</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">🍱 NO OUTSIDE FOOD</div>
+          <p>Bringing in outside food is <strong>restricted</strong>.<br>This helps <strong>prevent foodborne illness</strong> and <strong>safety incidents</strong> during group living.</p>
+        </div>
+      </div>
+
+      <!-- No Phone While Walking -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(41,128,185,0.25);">📵</div>
+          <div>
+            <div class="ncard-title">No Phone Use While Walking</div>
+            <div class="ncard-subtitle">Walk safely</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">📵 NO PHONE WHILE WALKING</div>
+          <p>Using your phone while walking is <strong>prohibited</strong>.<br>Please <strong>stop and stand still</strong> before using your phone.</p>
+        </div>
+      </div>
+
+      <!-- Emergency Exits -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(39,174,96,0.25);">🚪</div>
+          <div>
+            <div class="ncard-title">Check Emergency Exit Locations</div>
+            <div class="ncard-subtitle">Be prepared in advance</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">✅ Required After Check-In</div>
+          <p>Please <strong>locate the nearest emergency exit</strong> after checking in.<br>In an emergency, <strong>move quickly</strong> to a safe evacuation area.</p>
+        </div>
+      </div>
+
+      <!-- Emergency Announcements -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(142,68,173,0.25);">📢</div>
+          <div>
+            <div class="ncard-title">Listen for Emergency Announcements</div>
+            <div class="ncard-subtitle">Follow emergency instructions</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">📢 Stay Alert</div>
+          <p>In an emergency, <strong>listen carefully to announcements</strong>.<br>Please <strong>remain calm</strong> and follow the instructions given.</p>
+        </div>
+      </div>
+
+      <!-- Personal Belongings -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(22,160,133,0.25);">🎒</div>
+          <div>
+            <div class="ncard-title">Manage Personal Belongings</div>
+            <div class="ncard-subtitle">Watch for loss or damage</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">🎒 Your Responsibility</div>
+          <p>Please <strong>keep your personal belongings with you</strong> at all times in the training venue or accommodation.<br>Be careful to avoid loss or damage.</p>
+        </div>
+      </div>
+
+      <!-- Report Hazards -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(231,76,60,0.25);">⚡</div>
+          <div>
+            <div class="ncard-title">Report Safety Hazards</div>
+            <div class="ncard-subtitle">Use the Safety Hotline</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-warn">⚡ Report Immediately</div>
+          <p>If you notice a safety hazard, please report it <strong>immediately</strong> to your <strong>training coordinator</strong> or the <strong>Safety Hotline</strong>.</p>
+          <p style="margin-top:8px; font-size:14px; color: var(--lg-red); font-weight:700;">📱 [Search KakaoTalk Channel] LG Electronics (Pyeongtaek) Safety Hotline</p>
+        </div>
+      </div>
+
+      <!-- No Storage Devices / Cameras -->
+      <div class="ncard">
+        <div class="ncard-header">
+          <div class="ncard-icon-wrap" style="background:rgba(192,57,43,0.25);">📷</div>
+          <div>
+            <div class="ncard-title">No Personal Storage Devices / Cameras</div>
+            <div class="ncard-subtitle">Not permitted on-site</div>
+          </div>
+        </div>
+        <div class="ncard-body">
+          <div class="ncard-ban">📷 NO STORAGE DEVICES / CAMERAS</div>
+          <p>Personal storage devices (USB drives, external hard drives, etc.) and cameras <strong>may not be brought on-site</strong>.<br>Please <strong>leave these items at home</strong> before arrival.</p>
+        </div>
+      </div>
+
+    </div><!-- /notice-cards-grid -->
+
+    <!-- Fall Accident Prevention -->
+    <div style="margin-bottom:28px;">
+      <div style="background:#f7f7f7; border-radius:10px; border:1px solid #e0e0e0; overflow:hidden;">
+        <div style="background:#1a1a1a; padding:16px 24px; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:28px;">⚠️</span>
+          <div>
+            <div style="font-size:17px; font-weight:900; color:#fff; letter-spacing:0.5px;">LG Digital Park Fall Accident Prevention</div>
+            <div style="font-size:14px; color:#aaa; margin-top:2px;">Real Case Examples · Prevention Measures</div>
+          </div>
+        </div>
+        <div style="padding:20px 24px;">
+          <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:2px; margin-bottom:12px;">📋 Case Examples</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:12px; margin-bottom:20px;">
+            <div style="background:#fff; border-radius:8px; border:1px solid #e8e8e8; overflow:hidden;">
+              <div style="background:#fff0f4; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ffe0e8;">
+                <div style="font-size:30px; line-height:1;">🍺</div>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--lg-red);">Fell walking home after a dinner</div>
+                  <div style="font-size:12px; color:#aaa; margin-top:1px;">Sep 8, 2023</div>
+                </div>
+              </div>
+              <div style="padding:12px 14px; font-size:14px; color:#555; line-height:1.8;">
+                An employee fell on a walkway while walking home intoxicated after a department dinner, <strong style="color:var(--lg-red);">fracturing two front teeth</strong>
+              </div>
+            </div>
+            <div style="background:#fff; border-radius:8px; border:1px solid #e8e8e8; overflow:hidden;">
+              <div style="background:#fff0f4; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ffe0e8;">
+                <div style="font-size:30px; line-height:1;">🩴</div>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--lg-red);">Fell while walking down a slope</div>
+                  <div style="font-size:12px; color:#aaa; margin-top:1px;">Sep 4, 2023</div>
+                </div>
+              </div>
+              <div style="padding:12px 14px; font-size:14px; color:#555; line-height:1.8;">
+                A partner company employee wearing Crocs (sandals) fell while walking down a slope, <strong style="color:var(--lg-red);">tearing a ligament in their left ankle</strong>
+              </div>
+            </div>
+            <div style="background:#fff; border-radius:8px; border:1px solid #e8e8e8; overflow:hidden;">
+              <div style="background:#fff0f4; padding:10px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ffe0e8;">
+                <div style="font-size:30px; line-height:1;">🌧️</div>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--lg-red);">Fell while running in the rain</div>
+                  <div style="font-size:12px; color:#aaa; margin-top:1px;">Aug 28, 2023</div>
+                </div>
+              </div>
+              <div style="padding:12px 14px; font-size:14px; color:#555; line-height:1.8;">
+                An employee wearing sandals tripped on their pant leg while running in the rain, <strong style="color:var(--lg-red);">fracturing a toe on their right foot</strong>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:13px; font-weight:700; color:#555; letter-spacing:2px; margin-bottom:10px;">✅ Prevention Measures</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:8px;">
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🍷</span> Avoid excessive drinking at dinners</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🩴</span> Avoid slippery footwear like sandals</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🌧️</span> Watch for slippery surfaces in rain/snow</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🤲</span> Don't walk with hands in pockets</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>📵</span> No phone use while walking</div>
+            <div style="background:#fff; border-radius:6px; padding:10px 12px; font-size:14px; color:#444; display:flex; align-items:center; gap:8px; border:1px solid #e8e8e8;"><span>🚶</span> Don't rush or run</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency Contact -->
+    <div class="emergency-box">
+      <div class="emergency-label">🚨 Emergency Reporting</div>
+      <div class="emergency-desc">Any on-site accident (non-work-related) must be reported <strong>within 1 hour</strong>.</div>
+      <a href="tel:031-610-6119" class="emergency-number">031-610-<span>6119</span></a>
+    </div>
+
+  </div><!-- /tab-notice -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 1: ACCOMMODATION
+       ════════════════════════════════════════ -->
+  <div id="tab-stay" class="tab-content">
+    <div class="section-title"><span class="icon">🏨</span>Accommodation</div>
+
+    <!-- Check-in Information -->
+    <div class="sub-section">
+      <div class="sub-title">Check-in Information</div>
+      <div class="card">
+        <div style="background:#f7f7f7; border-radius:8px; padding:16px 18px; margin-bottom:12px; display:flex; gap:12px; align-items:flex-start;">
+          <span style="font-size:26px; flex-shrink:0;">🔑</span>
+          <div style="font-size:15px; color:#444; line-height:1.8;">
+            Accommodations are arranged for <strong style="color:var(--lg-red);">all participants</strong>.<br>
+            Room key cards will be <strong>distributed by the on-site coordinator</strong>.
+          </div>
+        </div>
+        <div style="margin-bottom:12px; background:#f7f7f7; border-left:3px solid var(--lg-red); border-radius:0 6px 6px 0; padding:12px 16px; font-size:14px; color:#444; line-height:1.7;">
+          Rooms are assigned as <strong>single occupancy</strong>. <span style="color:var(--lg-red); font-weight:700;">※ Depending on circumstances, double occupancy may apply.</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;" class="checkin-grid">
+          <div style="border-radius:8px; overflow:hidden; border:1px solid #ffb3c6; height:100%; display:flex; flex-direction:column;">
+            <div style="background:var(--lg-red); color:#fff; font-weight:900; font-size:14px; letter-spacing:1px; padding:10px 16px; text-align:center;">CHECK-IN</div>
+            <div style="background:#fff0f4; padding:14px 16px; flex:1; display:flex; align-items:center;">
+              <span style="color:#333; font-size:14px;">📅 Please refer to the training schedule</span>
+            </div>
+          </div>
+          <div style="border-radius:8px; overflow:hidden; border:1px solid #e0e0e0;">
+            <div style="background:#1a1a1a; color:#fff; font-weight:900; font-size:14px; letter-spacing:1px; padding:10px 16px; text-align:center;">CHECK-OUT</div>
+            <div style="background:#f7f7f7; padding:14px 16px;">
+              <span style="color:#333; font-size:14px;">By <strong>9:00 AM</strong> on the last day of training</span>
+              <div style="margin-top:10px; background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:8px 12px; font-size:13px; color:var(--lg-red); font-weight:600; line-height:1.6;">
+                ※ Please make sure to take all personal belongings with you upon check-out.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amenities Provided -->
+    <div class="sub-section">
+      <div class="sub-title">Amenities Provided</div>
+      <div class="card">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin-bottom:16px;">
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🛁</div><div style="font-size:14px; font-weight:700; color:var(--text);">Towel</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">💇</div><div style="font-size:14px; font-weight:700; color:var(--text);">Hair Dryer</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🧴</div><div style="font-size:14px; font-weight:700; color:var(--text);">Shampoo &amp; Conditioner</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🚿</div><div style="font-size:14px; font-weight:700; color:var(--text);">Body Wash &amp; Soap</div></div>
+          <div style="background:#f7f7f7; border-radius:8px; padding:14px 10px; text-align:center; border-top:2px solid var(--lg-red);"><div style="font-size:24px; margin-bottom:6px;">🫧</div><div style="font-size:14px; font-weight:700; color:var(--text);">Washing Machine (Shared)</div></div>
+        </div>
+        <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:#555;">
+          ※ Please bring any other items you may need.
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="sub-section">
+      <div class="sub-title">Contact Information</div>
+      <div class="card">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+          <div style="background:#f7f7f7; border-radius:8px; padding:18px 20px; border-top:3px solid var(--lg-red); text-align:center;">
+            <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1.5px; margin-bottom:8px;">🏠 Accommodation Inquiries</div>
+            <a href="tel:031-8074-5500" style="font-size:24px; font-weight:900; color:var(--text); text-decoration:none; letter-spacing:1px;">031-8074-5500</a>
+          </div>
+          <div style="background:#1a1a1a; border-radius:8px; padding:18px 20px; border-top:3px solid var(--lg-red); text-align:center;">
+            <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1.5px; margin-bottom:8px;">🚨 Emergency</div>
+            <a href="tel:031-610-6119" style="font-size:24px; font-weight:900; color:#ffffff; text-decoration:none; letter-spacing:1px;">031-610-6119</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /tab-stay -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 2: FACILITY GUIDE
+       ════════════════════════════════════════ -->
+  <div id="tab-amenity" class="tab-content">
+    <div class="section-title"><span class="icon">🏪</span>Facility Guide</div>
+
+    <!-- Cafeteria -->
+    <div class="sub-section">
+      <div class="sub-title">🍽️ Cafeteria</div>
+      <div class="card" style="border:2px solid var(--lg-red); border-radius:10px; padding:0; overflow:hidden;">
+        <div style="background:var(--lg-red); padding:18px 24px; display:flex; align-items:center; gap:14px;">
+          <span style="font-size:34px;">🍽️</span>
+          <div>
+            <div style="font-size:22px; font-weight:900; color:#fff; letter-spacing:1px;">HOUSE 1958</div>
+            <div style="font-size:14px; color:rgba(255,255,255,0.75); margin-top:2px;">Cafeteria</div>
+          </div>
+        </div>
+        <div style="padding:20px 24px;">
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px;" class="meal-grid">
+            <div style="background:#f7f7f7; border-radius:8px; padding:14px; text-align:center; border-top:3px solid var(--lg-red);">
+              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">Breakfast</div>
+              <div style="font-size:16px; font-weight:900; color:var(--text);">06:50 - 07:50</div>
+            </div>
+            <div style="background:#f7f7f7; border-radius:8px; padding:14px; text-align:center; border-top:3px solid var(--lg-red);">
+              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">Lunch</div>
+              <div style="font-size:16px; font-weight:900; color:var(--text);">12:00 - 13:00</div>
+            </div>
+            <div style="background:#f7f7f7; border-radius:8px; padding:14px; text-align:center; border-top:3px solid var(--lg-red);">
+              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">Dinner</div>
+              <div style="font-size:16px; font-weight:900; color:var(--text);">17:00 - 18:00</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:var(--lg-red); line-height:1.8;">
+              ※ Lunch times vary by training program — please <strong>check your training schedule</strong>.
+            </div>
+            <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:var(--lg-red); line-height:1.8;">
+              ※ Please <strong>wear your name badge</strong> when using the cafeteria; you may <strong>skip the ID card reader</strong>.
+            </div>
+          </div>
+          <div style="margin-top:14px; text-align:center;">
+            <button onclick="document.getElementById('routeModal').style.display='flex'"
+              style="background:var(--lg-red); color:#fff; border:none; border-radius:6px; padding:12px 24px; font-size:16px; font-weight:700; cursor:pointer; font-family:'Noto Sans KR',sans-serif; display:inline-flex; align-items:center; gap:8px; letter-spacing:0.3px;">
+              🗺️ View Directions to Cafeteria
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Facilities -->
+    <div class="sub-section">
+      <div class="sub-title">Other Facilities</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:16px;">
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🛒</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">Convenience Store</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">Chaeum Hall, 1F</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:1.9;"><div>🕐 <strong>07:00 - 19:00</strong></div></div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555;">※ Self-service available after 19:00</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">☕</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">Azit Café</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">Chaeum Hall, 1F</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:1.9;"><div>🕐 <strong>08:30 - 06:30</strong></div></div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555;">※ Break Time: 11:00 - 12:00</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🏋️</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">Fitness Center</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">Chaeum Hall, 12F</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:2;"><div>🕐 <strong>06:00 - 08:00</strong></div><div>🕐 <strong>12:00 - 13:30</strong></div><div>🕐 <strong>17:00 - 22:00</strong></div></div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555;">※ Please bring your own sneakers/running shoes and towel</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">ℹ️</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">Information Desk</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">Chaeum Hall 2F · Nanum Hall 1F</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:1.9;">Available anytime</div>
+          <div style="margin-top:10px; background:#f7f7f7; border-radius:6px; padding:8px 12px; font-size:14px; color:#555; line-height:1.8;">For first aid, phone charging, copying, or other needs, please contact the information desk.</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🚬</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">Smoking Area</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">No smoking outside designated areas</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:2;">
+            <div>📍 Chaeum Hall Rooftop <span style="color:#888; font-size:14px;">(facing Production Technology Institute)</span></div>
+            <div>📍 Ieum Hall Rooftop <span style="color:#888; font-size:14px;">(near elevator)</span></div>
+            <div>📍 Nanum Hall Rooftop <span style="color:#888; font-size:14px;">(near elevator)</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:0; border:1px solid #ffb3c6;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span style="font-size:28px;">🏥</span><div><div style="font-size:17px; font-weight:900; color:var(--text);">Clinic</div><div style="font-size:14px; color:var(--lg-red); font-weight:700;">LG Digital Park, Building Y, 1F</div></div></div>
+          <div style="font-size:15px; color:#444; line-height:2;"><div>🕐 <strong>08:00 - 17:00</strong></div><div style="color:#888; font-size:14px;">Lunch break 11:30 - 12:30</div></div>
+          <div style="margin-top:10px; background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 12px; font-size:14px; color:var(--lg-red); line-height:1.9;">
+            ※ For emergencies outside operating hours, contact the Integrated Control Center<br>
+            <strong>(Paramedics on-site 24 hours)</strong><br>
+            📞 <a href="tel:031-610-6119" style="color:var(--lg-red); font-weight:900; text-decoration:none;">031-610-6119</a>
+            &nbsp;|&nbsp; 📍 Integrated Control Center, Building Y, 1F
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /tab-amenity -->
+
+
+  <!-- ════════════════════════════════════════
+       TAB 3: BUILDING MAP
+       ════════════════════════════════════════ -->
+  <div id="tab-map" class="tab-content">
+    <div class="section-title"><span class="icon">🏢</span>Learning Center Building Map</div>
+    <div style="background:#fff; border-radius:8px; overflow:hidden; border:1px solid var(--gray-light); box-shadow:0 2px 12px rgba(10,22,40,0.08);">
+      <img src="IMG_5537.jpeg" alt="Building Map" style="width:100%; display:block;">
+    </div>
+  </div>
+
+</div><!-- /content-area -->
+
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+
+<!-- ════════ CAFETERIA ROUTE MODAL ════════ -->
+<div id="routeModal" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:#fff; border-radius:12px; max-width:700px; width:100%; max-height:90vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 8px 40px rgba(0,0,0,0.4);">
+    <div style="background:var(--lg-red); padding:16px 20px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0;">
+      <div style="font-size:16px; font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;">🗺️ Directions to Cafeteria</div>
+      <button onclick="document.getElementById('routeModal').style.display='none'"
+        style="background:rgba(255,255,255,0.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">✕</button>
+    </div>
+    <div style="overflow-y:auto; flex:1;">
+      <img src="IMG_5538.jpeg" alt="Directions to Cafeteria" style="width:100%; display:block;">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
