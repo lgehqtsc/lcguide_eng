@@ -104,7 +104,10 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    line-height: 1.3;
     text-align: center;
     letter-spacing: 0.5px;
     position: relative;
@@ -401,9 +404,22 @@
     }
     .content-area { padding: 20px 16px 60px; }
     .section-title { font-size:28px; }
-    .tab-btn { min-width: 100px; font-size:13px; padding: 10px 8px; }
+    .tab-btn { min-width: 90px; font-size:12px; padding: 10px 6px; }
     .checkin-grid { grid-template-columns: 1fr !important; }
     .meal-grid { grid-template-columns: 1fr !important; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-inner { flex-wrap: wrap; padding: 0; }
+    .tab-btn {
+      flex: 1 1 50%;
+      min-width: 0;
+      font-size:12px;
+      padding: 10px 4px;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn .tab-icon { font-size:18px; margin-bottom: 2px; }
+    .tab-label-full { display: none; }
   }
 </style>
 </head>
@@ -424,7 +440,7 @@
   <nav id="tabNav">
     <div class="nav-inner">
       <button class="tab-btn tab-notice active" onclick="showTab('notice', this)">
-        <span class="tab-icon">🚨</span>[MUST READ] Safety Guidelines
+        <span class="tab-icon">🚨</span><span class="tab-label-full">[MUST READ] </span>Safety Guidelines
       </button>
       <button class="tab-btn" onclick="showTab('stay', this)">
         <span class="tab-icon">🏨</span>Accommodation
@@ -709,6 +725,9 @@
             Room key cards will be <strong>distributed by the on-site coordinator</strong>.
           </div>
         </div>
+        <div style="margin-bottom:12px; background:#fff0f4; border:1px solid #ffb3c6; border-left:3px solid var(--lg-red); border-radius:0 6px 6px 0; padding:12px 16px; font-size:14px; color:var(--lg-red); line-height:1.7; font-weight:700;">
+          🔑 If you left your room key card in your room, you can get help at the <strong>Information Desk on the 2nd floor of Chaeum Hall</strong>.
+        </div>
         <div style="margin-bottom:12px; background:#f7f7f7; border-left:3px solid var(--lg-red); border-radius:0 6px 6px 0; padding:12px 16px; font-size:14px; color:#444; line-height:1.7;">
           Rooms are assigned as <strong>single occupancy</strong>. <span style="color:var(--lg-red); font-weight:700;">※ Depending on circumstances, double occupancy may apply.</span>
         </div>
@@ -829,17 +848,37 @@
           </div>
         </div>
         <div style="padding:20px 24px;">
-          <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:15px; color:var(--lg-red); line-height:1.8; margin-bottom:16px;">
-            ※ If the network below does not appear in your Wi-Fi list, click <strong>Add Hidden Network</strong> and enter the details manually.
-          </div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
-            <div style="background:#f7f7f7; border-radius:8px; padding:14px 18px; border-top:3px solid var(--lg-red);">
-              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">NETWORK ID</div>
-              <div style="font-size:18px; font-weight:900; color:var(--text); font-family:monospace;">LGEWLESS</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+            <div style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0;">
+              <div style="background:var(--lg-red); color:#fff; font-weight:900; font-size:14px; letter-spacing:1px; padding:10px 16px; display:flex; align-items:center; gap:8px;">🖥️ PC</div>
+              <div style="padding:14px 16px; background:#fff;">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:12px;">
+                  <div style="background:#f7f7f7; border-radius:8px; padding:14px 18px; border-top:3px solid var(--lg-red);">
+                    <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">NETWORK ID</div>
+                    <div style="font-size:18px; font-weight:900; color:var(--text); font-family:monospace;">LGEWLESS</div>
+                  </div>
+                  <div style="background:#f7f7f7; border-radius:8px; padding:14px 18px; border-top:3px solid var(--lg-red);">
+                    <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">PASSWORD</div>
+                    <div style="font-size:18px; font-weight:900; color:var(--text); font-family:monospace;">@lge12345!!</div>
+                  </div>
+                </div>
+                <div style="background:#fff0f4; border:1px solid #ffb3c6; border-radius:6px; padding:10px 14px; font-size:14px; color:var(--lg-red); line-height:1.7;">
+                  ※ If the network above does not appear in your Wi-Fi list, click <strong>Add Hidden Network</strong> and enter the details manually.
+                </div>
+              </div>
             </div>
-            <div style="background:#f7f7f7; border-radius:8px; padding:14px 18px; border-top:3px solid var(--lg-red);">
-              <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">PASSWORD</div>
-              <div style="font-size:18px; font-weight:900; color:var(--text); font-family:monospace;">@lge12345!!</div>
+            <div style="border-radius:10px; overflow:hidden; border:1px solid #e0e0e0;">
+              <div style="background:#1a1a1a; color:#fff; font-weight:900; font-size:14px; letter-spacing:1px; padding:10px 16px; display:flex; align-items:center; gap:8px;">📱 Mobile</div>
+              <div style="padding:14px 16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; background:#fff;">
+                <div style="background:#f7f7f7; border-radius:8px; padding:14px 18px; border-top:3px solid var(--lg-red);">
+                  <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">NETWORK ID</div>
+                  <div style="font-size:18px; font-weight:900; color:var(--text); font-family:monospace;">mLGE</div>
+                </div>
+                <div style="background:#f7f7f7; border-radius:8px; padding:14px 18px; border-top:3px solid var(--lg-red);">
+                  <div style="font-size:13px; font-weight:700; color:var(--lg-red); letter-spacing:1px; margin-bottom:6px;">PASSWORD</div>
+                  <div style="font-size:18px; font-weight:900; color:var(--text); font-family:monospace;">4f3d2s1a@@</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
